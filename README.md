@@ -1,133 +1,97 @@
-# Veue Project
+# Veue
 
-A screen recording and screenshot utility built with Python, GTK, FFmpeg, and ImageMagick.
+**Veue** is a minimalist screen recording and screenshot application designed exclusively for Ubuntu. It offers a simple interface to record screen areas or capture screenshots, with options to save recordings as `.mp4` or `.gif` and screenshots as `.png` or `.jpeg`.
 
-## Setup Instructions
+**Note**: This application is built for Ubuntu and relies on Ubuntu-specific tools (e.g., X11, FFmpeg, ImageMagick). It is not compatible with other operating systems.
 
-### Prerequisites
+## Features
+- **Screen Recording**: Select an area, countdown from 2 seconds, and record with pause/resume and start-over controls.
+- **Screenshots**: Capture a selected screen area with a two-click process.
+- **Preview**: View recordings (with playback option) or screenshots before saving.
+- **Save Options**: Recordings as `.mp4` or `.gif`, screenshots as `.png` or `.jpeg`.
 
-The following tools need to be installed on your system:
+## Prerequisites
+- Ubuntu (tested on 20.04 and later)
+- Python 3 (`python3`)
+- GTK 3 for Python (`python3-gi`, `python3-gi-cairo`, `gir1.2-gtk-3.0`)
+- FFmpeg (`ffmpeg`) for recording and GIF conversion
+- ImageMagick (`imagemagick`) for screenshots
 
-- Python 3.12+
-- GTK for Python (PyGObject)
-- FFmpeg
-- ImageMagick
-
-### Virtual Environment
-
-This project uses a Python virtual environment to manage dependencies. Here's how to set it up:
-
-1. **Create the virtual environment** (already done):
+## Installation
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/2dghost/Veue.git
+   cd Veue
+   ```
+2. **Set Up a Virtual Environment** (recommended):
    ```bash
    python3 -m venv venv
-   ```
-
-2. **Activate the virtual environment**:
-   ```bash
    source venv/bin/activate
    ```
-   
-   Or use the helper script:
+3. **Install Dependencies**:
    ```bash
-   source venv_helper.sh activate
+   sudo apt-get install python3-gi python3-gi-cairo gir1.2-gtk-3.0 ffmpeg imagemagick
+   ```
+4. **Verify Setup**:
+   - Ensure `python3 --version`, `ffmpeg -version`, and `magick -version` return valid outputs.
+
+## Usage
+1. **Run the App**:
+   ```bash
+   python3 main.py
+   ```
+   Or use the provided helper script:
+   ```bash
+   ./run_app.sh
    ```
 
-3. **Deactivate when done**:
-   ```bash
-   deactivate
-   ```
-   
-   Or use the helper script:
-   ```bash
-   source venv_helper.sh deactivate
-   ```
+2. **Recording**:
+   - Click "Record," select an area, wait for the countdown.
+   - Use the control bar:
+     - "Pause" to pause/resume.
+     - "Start Over" to reset.
+     - "End" to finish and preview.
+   - In the preview, click "Play" to view, or "File" → "Save As..." to save as `.mp4` or `.gif`.
 
-### Helper Scripts
+3. **Screenshot**:
+   - Click "Screenshot," click once to start, click again to capture.
+   - Preview appears; use "File" → "Save As..." to save as `.png` or `.jpeg`.
 
-The project includes several helper scripts:
-
-- `venv_helper.sh`: Manage the Python virtual environment
-  - `source venv_helper.sh activate`: Activate the virtual environment
-  - `source venv_helper.sh deactivate`: Deactivate the virtual environment
-  - `source venv_helper.sh status`: Check if the virtual environment is active
-- `screenshot_test.sh`: Test ImageMagick screenshot capabilities
-- `image_manipulation_test.sh`: Test ImageMagick image manipulation
-- `screen_record_test.sh`: Test FFmpeg screen recording
-- `video_to_gif.sh`: Convert videos to GIFs using FFmpeg
-- `run_app.sh`: Run the application with the virtual environment automatically activated
+## Keyboard Shortcuts
+- **Escape**: Close the application or return to the main window
+- **Space**: Pause/resume recording (when recording is active)
 
 ## Application Structure
-
 The application consists of the following components:
-
 - `main.py`: The main application file that creates the GUI
-  - `MainApplication`: A small, undecorated window with "Record" and "Screenshot" buttons
-  - `AreaSelector`: Allows selecting a specific area of the screen for recording or screenshots
-  - `CountdownWindow`: Displays a countdown before starting screen recording
-  - `ControlWindow`: Provides controls to stop recording
+- `MainApplication`: A small, undecorated window with "Record" and "Screenshot" buttons
+- `AreaSelector`: Allows selecting a specific area of the screen
+- `CountdownWindow`: Displays a countdown before starting screen recording
+- `ControlWindow`: Provides controls during recording
+- `PreviewWindow`: Displays recordings and screenshots before saving
 
-## Running the Application
-
-To run the application, make sure you have activated the virtual environment:
-
-```bash
-source venv_helper.sh activate
-```
-
-Then run the main Python file:
-
-```bash
-python main.py
-```
-
-Alternatively, you can use the provided run script which automatically handles virtual environment activation:
-
-```bash
-./run_app.sh
-```
-
-### Controls
-
-- **Record Button**: Opens the area selector for screen recording
-- **Screenshot Button**: Opens the area selector for taking screenshots
-- **X Button**: Closes the application
-- **Escape Key**: Closes the application or returns to the main window
-
-### Features
-
-- **Area Selection**: Click and drag to select a portion of the screen for recording or screenshots
-- **Countdown Timer**: A 5-second countdown appears before recording begins
-- **Recording Controls**: 
-  - **End**: Stop recording and save the video
-  - **Pause/Resume**: Temporarily pause recording and continue later
-  - **Start Over**: Discard the current recording and start again
-- **Recording Timer**: Shows the elapsed recording time
-- **Keyboard Shortcuts**:
-  - **Escape**: End recording or exit the application
-  - **Space**: Pause/resume recording
-- **Automatic File Naming**: 
-  - Screenshots are saved with timestamps in the `screenshots` directory
-  - Recordings are saved with timestamps in the `videos` directory
-- **Dimension Display**: Shows the dimensions of the selected area in real-time
-- **Multi-segment Recording**: Supports pausing and resuming, combining all segments into a single video file
-
-## Development Roadmap
-
-- **Phase 1**: Set up the development environment (completed)
-- **Phase 2**: Create the main application window (completed)
-- **Phase 3**: Implement area selection functionality (completed)
-- **Phase 4**: Implement screen recording and screenshot capabilities (completed)
-- **Phase 5**: Implement enhanced recording controls (current phase)
-- **Phase 6**: Add preview functionality for recordings and screenshots
+## Troubleshooting
+- **No Video Playback**: Install a player like VLC (`sudo apt-get install vlc`) or Totem (`sudo apt-get install totem`).
+- **GIF Errors**: Ensure FFmpeg is installed and the recording file exists.
+- **Dependencies Missing**: Re-run the installation commands above.
 
 ## Development
-
-When developing, always make sure to activate the virtual environment first. This ensures that any packages you install are isolated to this project.
-
+When developing, always make sure to activate the virtual environment first:
+```bash
+source venv/bin/activate
+```
+Or use the helper script:
 ```bash
 source venv_helper.sh activate
 ```
 
-## License
+## Helper Scripts
+The project includes several helper scripts:
+- `venv_helper.sh`: Manage the Python virtual environment
+- `run_app.sh`: Run the application with the virtual environment automatically activated
 
-[Your license information here] 
+## Contributing
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## License
+MIT License (see [LICENSE](LICENSE) - to be added). 
