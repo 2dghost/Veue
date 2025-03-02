@@ -1,0 +1,32 @@
+# Virtual environment
+venv/
+
+# Media files
+*.mp4
+*.png
+*.gif
+*.jpg
+*.jpeg
+
+# Temporary files
+temp_segment_*
+file_list.txt
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.env
+.venv
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# OS specific files
+.DS_Store
+Thumbs.db
+
+# Directories that might contain large files
+screenshots/
+videos/ 
