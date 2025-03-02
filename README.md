@@ -44,4 +44,3 @@ Want to help? See the [Contribution Guidelines](CONTRIBUTING.md).
 Get it from [Releases](https://github.com/2dghost/Veue/releases).
 
 ---
-*Veue - Simple. Fast. Ubuntu.* 
