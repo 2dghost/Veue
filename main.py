@@ -952,24 +952,26 @@ class PreviewWindow(Gtk.Window):
             
             # Ensure the file has the correct extension based on the selected filter
             active_filter = dialog.get_filter()
-            if active_filter == filter_gif:
-                new_path = f"{base_path}.gif"
-                print(f"Using .gif extension: {new_path}")
-            elif active_filter == filter_mp4:
-                new_path = f"{base_path}.mp4"
-                print(f"Using .mp4 extension: {new_path}")
-            elif active_filter == filter_png:
-                new_path = f"{base_path}.png"
-                print(f"Using .png extension: {new_path}")
-            elif active_filter == filter_jpg:
-                new_path = f"{base_path}.jpg"
-                print(f"Using .jpg extension: {new_path}")
-            elif not os.path.splitext(new_path)[1]:
-                # If no extension and no specific filter, add default extension based on file type
-                if self.is_video:
+            if self.is_video:
+                if active_filter == filter_gif:
+                    new_path = f"{base_path}.gif"
+                    print(f"Using .gif extension: {new_path}")
+                elif active_filter == filter_mp4:
+                    new_path = f"{base_path}.mp4"
+                    print(f"Using .mp4 extension: {new_path}")
+                elif not os.path.splitext(new_path)[1]:
+                    # If no extension and no specific filter, add default extension for video
                     new_path = f"{new_path}.mp4"
                     print(f"Added default .mp4 extension: {new_path}")
-                else:
+            else:
+                if active_filter == filter_png:
+                    new_path = f"{base_path}.png"
+                    print(f"Using .png extension: {new_path}")
+                elif active_filter == filter_jpg:
+                    new_path = f"{base_path}.jpg"
+                    print(f"Using .jpg extension: {new_path}")
+                elif not os.path.splitext(new_path)[1]:
+                    # If no extension and no specific filter, add default extension for image
                     new_path = f"{new_path}.png"
                     print(f"Added default .png extension: {new_path}")
             
