@@ -35,10 +35,10 @@
 - **Screenshot**: Click "Screenshot," click twice to capture, then save as `.png` or `.jpeg` from the preview.
 
 ## License
-Released under the [MIT License](https://github.com/2dghost/Veue/blob/master/LICENSE).
+Released under the [MIT License](LICENSE).
 
 ## Contribute
-Want to help? See the [Contribution Guidelines](https://github.com/2dghost/Veue/blob/master/CONTRIBUTING.md) on the `master` branch.
+Want to help? See the [Contribution Guidelines](CONTRIBUTING.md).
 
 ## Download
 Get it from [Releases](https://github.com/2dghost/Veue/releases).
